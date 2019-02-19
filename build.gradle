@@ -1,0 +1,33 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.bmuschko:gradle-tomcat-plugin:2.5'
+    }
+}
+
+apply plugin: 'com.bmuschko.tomcat'
+apply plugin: 'war'
+apply plugin: 'java'
+
+group 'com.company.homeworks'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+    compile group: 'org.glassfish.web', name: 'javax.servlet.jsp.jstl', version: '1.2.5'
+    def tomcatVersion = '7.0.76'
+    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
+}
+
